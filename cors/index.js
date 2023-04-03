@@ -95,6 +95,7 @@ async function handleRequest(event) {
             // 是否带 body
             if (["POST", "PUT", "PATCH", "DELETE"].indexOf(request.method) >= 0) {
                 const ct = (reqHeaders.get('content-type') || "").toLowerCase();
+                fp.headers['content-type'] = ct
                 if (ct.includes('application/json')) {
                     fp.body = JSON.stringify(await request.json());
                 } else if (ct.includes('application/text') || ct.includes('text/html')) {
